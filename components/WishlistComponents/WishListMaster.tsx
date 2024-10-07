@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
+import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import useWishlist from '../../hooks/WishlistHooks/useWishlistHook';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 const NoDataFound = dynamic(() => import('../NoRecordFound'));
@@ -8,6 +9,7 @@ const ProductCardSkeleton = dynamic(() => import('../../cards/ProductCardSkeleto
 
 const WishlistMaster = () => {
   const { wishlistData, isLoading } = useWishlist();
+  const { addToCartItem, getPartyName } = useAddToCartHook();
   const cartData = useSelector(selectCart)?.items;
   const handleDataRendering = () => {
     if (isLoading) {
@@ -27,7 +29,14 @@ const WishlistMaster = () => {
           {wishlistData?.length > 0 &&
             wishlistData?.map((item: any, index: number) => (
               <div key={index} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4 px-3">
-                <ProductCard data={item} wishlistData={wishlistData} btnAction={'Add'} cartData={cartData} />
+                <ProductCard
+                  data={item}
+                  wishlistData={wishlistData}
+                  btnAction={'Add'}
+                  cartData={cartData}
+                  addToCartItem={addToCartItem}
+                  getPartyName={getPartyName}
+                />
               </div>
             ))}
         </div>
