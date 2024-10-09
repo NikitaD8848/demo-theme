@@ -29,7 +29,6 @@ function ProductDetailDescribtionSection({
   selectedMultiLangData,
   cartData,
 }: any) {
-  console.log(productDetailData, 'data');
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
@@ -77,8 +76,8 @@ function ProductDetailDescribtionSection({
       <div>
         <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
         <div className="d-flex">
-          <span className="pe-2 fs-5">{productDetailData?.rating}</span>
-          <Rating initialValue={productDetailData?.rating} size={22} readonly />
+          <span className={`pe-2 fs-6 ${styles.rating}`}>{productDetailData?.rating}</span>
+          <Rating initialValue={productDetailData?.rating} size={20} readonly />
         </div>
         <hr className="my-2" />
         <p className="mb-0">
@@ -118,19 +117,21 @@ function ProductDetailDescribtionSection({
       <hr className="my-2" />
       <div>
         <ProductVariants productVariantData={productVariantData} />
-        <hr className="my-2" />
+
         <MultipleQuantityInputField
           productVariantData={productVariantData}
           handleMultipleQtyChange={handleMultipleQtyChange}
           itemList={itemList}
           selectedMultiLangData={selectedMultiLangData}
         />
-        <hr className="my-2" />
+        {productDetailData?.variants?.length > 0 && <hr className="my-2" />}
       </div>
       <div>
-        <p className={`my-1 ${styles.detailPriceSection}`}>
-          {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
-        </p>
+        {productDetailData?.sku_code && (
+          <p className={`my-1 ${styles.detailPriceSection}`}>
+            {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
+          </p>
+        )}
         <QuantityInputField
           productDetailData={productDetailData}
           qty={qty}

@@ -8,13 +8,13 @@ const CustomerReviewSkeleton = () => {
       <div className="col-lg-12 p-2 border ">
         <div className="row">
           <div className="col-md-2">
-            <p className="fs-2 mb-0">
+            <div className="fs-2 mb-0">
               <FaUserCircle size={27} />
               <Placeholder as={Card.Title} animation="glow">
                 <Placeholder style={{ width: '75%', minHeight: '10px' }} />
                 <Placeholder style={{ width: '40%', minHeight: '10px' }} />
               </Placeholder>
-            </p>
+            </div>
           </div>
           <div className="col-md-8">
             <Placeholder as={Card.Title} animation="glow">

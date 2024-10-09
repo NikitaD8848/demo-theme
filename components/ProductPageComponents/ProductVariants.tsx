@@ -34,6 +34,7 @@ const ProductVariants = ({ productVariantData }: any) => {
                 </div>
               </div>
             ))}
+          <hr className="my-2" />
         </>
       )}
     </div>

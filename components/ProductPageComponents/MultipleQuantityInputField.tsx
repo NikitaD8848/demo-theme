@@ -7,7 +7,7 @@ function MultipleQuantityInputField({ productVariantData, handleMultipleQtyChang
     <div>
       {productVariantData?.variants?.length > 0 &&
         productVariantData?.variants?.map((variant: any, index: any) => (
-          <div className="d-flex">
+          <div className="d-flex" key={index}>
             <div>
               <p className={`my-1 ${styles.detailPriceSection}`}>
                 {selectedMultiLangData?.sku_code} : <span>{variant?.variant_code}</span>
