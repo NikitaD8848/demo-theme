@@ -27,7 +27,9 @@ function ProductDetailDescribtionSection({
   handleStockAvailabilityData,
   handleQtyModificationOnButtonClick,
   selectedMultiLangData,
+  cartData,
 }: any) {
+  console.log(productDetailData, 'data');
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
@@ -149,12 +151,16 @@ function ProductDetailDescribtionSection({
               handleAddToCart={handleAddMultipleProductData}
               selectedMultiLangData={selectedMultiLangData}
               addToCartLoaderBtn={addToCartLoaderBtn}
+              cartData={cartData}
+              productDetailData={productDetailData}
             />
           ) : (
             <AddToCartBtn
               handleAddToCart={handleAddToSingleProductData}
               selectedMultiLangData={selectedMultiLangData}
               addToCartLoaderBtn={addToCartLoaderBtn}
+              cartData={cartData}
+              productDetailData={productDetailData}
             />
           )}
           <CheckStockAvailabilityBtn

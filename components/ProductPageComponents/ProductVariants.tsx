@@ -22,7 +22,7 @@ const ProductVariants = ({ productVariantData }: any) => {
                       return (
                         <button
                           key={value}
-                          className={`me-2 px-2 rounded border ${
+                          className={`me-2 px-2 py-1 border ${
                             isActive ? styles.variant_btn_active : isDisabled ? styles.variant_btn_disabled : styles.variant_btn
                           }`}
                           onClick={() => handleAttributeClick(attribute.field_name, value)}

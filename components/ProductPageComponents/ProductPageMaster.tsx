@@ -12,6 +12,7 @@ const StockAvailabilityTable = dynamic(() => import('./StockAvailabilityTable'))
 const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndTech'));
 import styles from '../../styles/components/productDetail.module.scss';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
+import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 
 function ProductPageMaster() {
   const {
@@ -30,6 +31,7 @@ function ProductPageMaster() {
   const [pinCode, setPinCode] = useState('');
   const [tab, setTab] = useState('SPECIFICATION');
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
+  const cartData = useSelector(selectCart).items;
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
   useEffect(() => {
     if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
@@ -66,6 +68,7 @@ function ProductPageMaster() {
               handleMultipleQtyChange={handleMultipleQtyChange}
               qty={qty}
               selectedMultiLangData={selectedMultiLangData}
+              cartData={cartData}
             />
           </div>
           <div className="col-12 mt-4">
