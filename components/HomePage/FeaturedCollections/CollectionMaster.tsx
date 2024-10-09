@@ -6,6 +6,7 @@ import ErrorImage from '../../../public/assets/images/error-icon.png';
 import { selectWishlist } from '../../../store/slices/wishlist-slices/wishlist-local-slice';
 import CollectionsData from './CollectionsData';
 import CollectionsLoading from './CollectionsLoading';
+import { selectCart } from '../../../store/slices/cart-slices/cart-local-slice';
 
 const CollectionMaster = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();

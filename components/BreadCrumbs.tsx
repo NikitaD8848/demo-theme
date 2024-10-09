@@ -18,7 +18,7 @@ function BreadCrumbs() {
         </li>
         {breadCrumbData?.length > 0 &&
           breadCrumbData?.map((item: any, index: number) => (
-            <div key={index}>
+            <div key={index} className="d-flex">
               <FaAngleRight className=" my-1" size={15} color="#999" />
               <li className="breadcrumb-item active text-secondary" aria-current="page">
                 <Link href={`${item?.link}?page=1`} legacyBehavior className="text-secondary">

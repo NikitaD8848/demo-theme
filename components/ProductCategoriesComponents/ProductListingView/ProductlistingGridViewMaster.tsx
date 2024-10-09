@@ -15,6 +15,7 @@ function ProductlistingGridViewMaster({
   isSuperAdmin,
   handleShowCatalogModal,
   handleDeleteCatalogItem,
+  cartData,
 }: any) {
   const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 12).toString(), 10) === pageOffset;
   const { addToCartItem, getPartyName } = useAddToCartHook();
@@ -45,6 +46,7 @@ function ProductlistingGridViewMaster({
                   isSuperAdmin={isSuperAdmin}
                   handleDeleteCatalogItem={handleDeleteCatalogItem}
                   handleShowCatalogModal={handleShowCatalogModal}
+                  cartData={cartData}
                 />
               </div>
             );

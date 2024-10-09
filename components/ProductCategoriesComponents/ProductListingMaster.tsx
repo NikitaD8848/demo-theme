@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import useCatalogFunctions from '../../hooks/CatalogHooks/useCatalogFunctions';
 import useProductListing from '../../hooks/ProductListPageHooks/useProductsDataHook';
+import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { selectCatalogList } from '../../store/slices/catalog-slice/catalog-local-slice';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
@@ -29,6 +30,7 @@ function ProductListingMaster() {
     handleSortBy,
   } = useProductListing();
   const wishlistData = useSelector(selectWishlist).items;
+  const cartData = useSelector(selectCart).items;
   const isSuperAdmin = localStorage.getItem('isSuperAdmin');
   const pageOffset = Number(query?.page) - 1;
   const catalogListData = useSelector(selectCatalogList).catalogList;
@@ -85,6 +87,7 @@ function ProductListingMaster() {
             isSuperAdmin={isSuperAdmin}
             handleShowCatalogModal={handleShowCatalogModal}
             handleDeleteCatalogItem={handleDeleteCatalogItem}
+            cartData={cartData}
           />
         </div>
         <div className="sticky_filter_btn w-100  d-block d-sm-none">

@@ -12,6 +12,7 @@ function ProductGridView({
   isSuperAdmin,
   handleShowCatalogModal,
   handleDeleteCatalogItem,
+  cartData,
 }: any) {
   return (
     <div className="row ps-lg-5 ps-sm-2 pe-lg-5">
@@ -31,6 +32,7 @@ function ProductGridView({
             isSuperAdmin={isSuperAdmin}
             handleShowCatalogModal={handleShowCatalogModal}
             handleDeleteCatalogItem={handleDeleteCatalogItem}
+            cartData={cartData}
           />
         </div>
       </div>

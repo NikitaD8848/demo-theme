@@ -3,16 +3,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
+import { FaCartPlus, FaCircleCheck, FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const ProductCard = ({
   data,
   wishlistData,
+  cartData,
   addToCartItem,
   getPartyName,
   isSuperAdmin,
@@ -55,6 +57,49 @@ const ProductCard = ({
           </span>
         );
       }
+    }
+  };
+  let cartProducts: any;
+  const handleRenderCartBtnText = () => {
+    {
+      cartData?.length > 0 &&
+        cartData?.map((item: any) => {
+          if (item === data?.name) {
+            cartProducts = item;
+          }
+        });
+    }
+    if (!cartProducts) {
+      return (
+        <Button
+          type="button"
+          className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`}
+          onClick={handleAddToProductData}
+          disabled={addToCartLoaderBtn}
+        >
+          {!addToCartLoaderBtn ? (
+            <>
+              <span>ADD</span>
+              <FaCartPlus className={`${ProductCardStyles.cardBtn}`} />
+            </>
+          ) : (
+            <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+          )}
+        </Button>
+      );
+    } else {
+      return (
+        <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn_added}`}>
+          {!addToCartLoaderBtn ? (
+            <>
+              <span>ADDED</span>
+              <FaCheckCircle className={`mb-1 ${ProductCardStyles.cardBtn}`} />
+            </>
+          ) : (
+            <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+          )}
+        </Button>
+      );
     }
   };
   const handleAddToProductData = async () => {
@@ -121,30 +166,14 @@ const ProductCard = ({
             <div>
               <Card.Text className={`my-0 py-0 fw-bold ${ProductCardStyles.product_card_text} `}>
                 {data?.currency_symbol}
-                {data.price} <span className={ProductCardStyles.mrpPrice}>M.R.P:</span>
+                {data.price}{' '}
                 <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}>
                   {data?.currency_symbol}
                   {data.mrp_price}
                 </span>
               </Card.Text>
             </div>
-            <div>
-              <Button
-                type="button"
-                className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`}
-                onClick={handleAddToProductData}
-                disabled={addToCartLoaderBtn}
-              >
-                {!addToCartLoaderBtn ? (
-                  <>
-                    <span>ADD</span>
-                    <FaCartPlus className={ProductCardStyles.cardBtn} />
-                  </>
-                ) : (
-                  <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
-                )}
-              </Button>
-            </div>
+            <div>{handleRenderCartBtnText()}</div>
           </div>
           <div>{isSuperAdmin === 'true' && handleRenderAddToCatalogBtn()}</div>
         </div>

@@ -7,8 +7,8 @@ import { FaSearch, FaUserCircle } from 'react-icons/fa';
 import { FaAlignJustify, FaCartPlus, FaHeart } from 'react-icons/fa6';
 import logo from '../../public/assets/images/logo.png';
 import stylesNavbar from '../../styles/components/navbar.module.scss';
-import ProductCatagoriesNavbar from './ProductCatagoriesNavbar';
 import MobileProductCategories from './MobileProductCategories';
+import ProductCatagoriesNavbar from './ProductCatagoriesNavbar';
 
 function WebNavBar({
   navbarData,
@@ -42,6 +42,10 @@ function WebNavBar({
   };
   const handleCloseSidebar = () => setIsSidebarOpen(false);
   const handleShowDropDown = () => setShowDropDown(!showDropDown);
+  const handleToggle = (e: any) => {
+    setShowDropDown((prevState) => !prevState);
+  };
+
   return (
     <>
       <header className={stylesNavbar.header}>
@@ -75,7 +79,7 @@ function WebNavBar({
                     aria-label="Search"
                     aria-describedby="basic-addon1"
                     onChange={(e: any) => setSearchTerm(e.target.value)}
-                    onKeyDown={handleKeyDown}
+                    onKeyDown={(e) => handleKeyDown(e)}
                   />
                   <FaSearch className={stylesNavbar.search_icon} />
                 </div>
@@ -116,71 +120,70 @@ function WebNavBar({
                           <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>{user}</span>
                         </div>
 
-                        <NavDropdown
-                          title={''}
-                          id="basic-nav-dropdown"
-                          className={` ${stylesNavbar.order_list_dropdown}`}
-                          show={showDropDown}
-                        >
-                          {isLoggedIn && (
-                            <>
+                        {isLoggedIn && (
+                          <NavDropdown
+                            title={''}
+                            id="basic-nav-dropdown"
+                            className={` ${stylesNavbar.order_list_dropdown}`}
+                            show={showDropDown}
+                            onToggle={handleToggle}
+                          >
+                            <NavDropdown.Item
+                              as="a"
+                              className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                            ></NavDropdown.Item>
+
+                            <Link href="/quick-order" passHref className="text-decoration-none">
                               <NavDropdown.Item
                                 as="a"
                                 className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
-                              ></NavDropdown.Item>
+                              >
+                                {selectedLanguageData?.quick_order}
+                              </NavDropdown.Item>
+                            </Link>
+                            <Link href="/quick-order" passHref className="text-decoration-none">
+                              <NavDropdown.Item
+                                as="a"
+                                className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                              >
+                                {selectedLanguageData?.my_account}
+                              </NavDropdown.Item>
+                            </Link>
+                            <Link href="/quick-order" passHref className="text-decoration-none">
+                              <NavDropdown.Item
+                                as="a"
+                                className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                              >
+                                {selectedLanguageData?.dealer_ledger}
+                              </NavDropdown.Item>
+                            </Link>
+                            <Link href="/catalog" passHref className="text-decoration-none">
+                              <NavDropdown.Item
+                                as="a"
+                                className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                              >
+                                {selectedLanguageData?.view_catalogs}
+                              </NavDropdown.Item>
+                            </Link>
+                            <Link href="/my-orders" passHref className="text-decoration-none">
+                              <NavDropdown.Item
+                                as="a"
+                                className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                              >
+                                {selectedLanguageData?.my_order}
+                              </NavDropdown.Item>
+                            </Link>
 
-                              <Link href="/quick-order" passHref className="text-decoration-none">
-                                <NavDropdown.Item
-                                  as="a"
-                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
-                                >
-                                  {selectedLanguageData?.quick_order}
-                                </NavDropdown.Item>
-                              </Link>
-                              <Link href="/quick-order" passHref className="text-decoration-none">
-                                <NavDropdown.Item
-                                  as="a"
-                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
-                                >
-                                  {selectedLanguageData?.my_account}
-                                </NavDropdown.Item>
-                              </Link>
-                              <Link href="/quick-order" passHref className="text-decoration-none">
-                                <NavDropdown.Item
-                                  as="a"
-                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
-                                >
-                                  {selectedLanguageData?.dealer_ledger}
-                                </NavDropdown.Item>
-                              </Link>
-                              <Link href="/catalog" passHref className="text-decoration-none">
-                                <NavDropdown.Item
-                                  as="a"
-                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
-                                >
-                                  {selectedLanguageData?.view_catalogs}
-                                </NavDropdown.Item>
-                              </Link>
-                              <Link href="/my-orders" passHref className="text-decoration-none">
-                                <NavDropdown.Item
-                                  as="a"
-                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
-                                >
-                                  {selectedLanguageData?.my_order}
-                                </NavDropdown.Item>
-                              </Link>
-
-                              <Link href="#" passHref className="text-decoration-none" onClick={handleLogoutUser}>
-                                <NavDropdown.Item
-                                  as="a"
-                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
-                                >
-                                  {selectedLanguageData?.logout}
-                                </NavDropdown.Item>
-                              </Link>
-                            </>
-                          )}
-                        </NavDropdown>
+                            <Link href="#" passHref className="text-decoration-none" onClick={handleLogoutUser}>
+                              <NavDropdown.Item
+                                as="a"
+                                className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                              >
+                                {selectedLanguageData?.logout}
+                              </NavDropdown.Item>
+                            </Link>
+                          </NavDropdown>
+                        )}
                       </>
                     ) : (
                       <Link href={'/login'} className={stylesNavbar.icon_container} onClick={handleShowDropDown}>
