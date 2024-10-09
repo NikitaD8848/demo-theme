@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from '../../styles/components/productDetail.module.scss';
 import { FaRegCheckCircle, FaWindowClose } from 'react-icons/fa';
 
-function MultipleQuantityInputField  ({ productVariantData, handleMultipleQtyChange, itemList, selectedMultiLangData }: any) {
+function MultipleQuantityInputField({ productVariantData, handleMultipleQtyChange, itemList, selectedMultiLangData }: any) {
   return (
     <div>
       {productVariantData?.variants?.length > 0 &&
@@ -15,7 +15,7 @@ function MultipleQuantityInputField  ({ productVariantData, handleMultipleQtyCha
               <div className={`my-1 ${styles.detailPriceSection}`}>
                 <label htmlFor="productQuantity">{selectedMultiLangData?.quantity}:</label>
                 <input
-                  className={`ms-2 rounded-1 ${styles.input} ${styles.detailPriceSection}`}
+                  className={`ms-2 rounded border px-1 ${styles.input} ${styles.detailPriceSection}`}
                   id="productQuantity"
                   value={itemList[index]?.quantity}
                   onChange={(e) => handleMultipleQtyChange(index, variant?.variant_code, e.target.value)}
@@ -39,6 +39,6 @@ function MultipleQuantityInputField  ({ productVariantData, handleMultipleQtyCha
         ))}
     </div>
   );
-};
+}
 
 export default MultipleQuantityInputField;

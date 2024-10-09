@@ -8,6 +8,7 @@ import { FaSquareInstagram } from 'react-icons/fa6';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
 import { toast } from 'react-toastify';
+import { Rating } from 'react-simple-star-rating';
 const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
 const MultipleQuantityInputField = dynamic(() => import('./MultipleQuantityInputField'));
 const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
@@ -71,15 +72,19 @@ function ProductDetailDescribtionSection({
   };
   return (
     <>
-      <div className="border-bottom">
+      <div>
         <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
-        <div className="">{productDetailData?.rating && <StarRating rating={productDetailData?.rating} />}</div>
+        <div className="d-flex">
+          <span className="pe-2 fs-5">{productDetailData?.rating}</span>
+          <Rating initialValue={productDetailData?.rating} size={22} readonly />
+        </div>
+        <hr className="my-2" />
         <p className="mb-0">
           {selectedMultiLangData?.item_code}: {productDetailData?.name}
         </p>
         <div>
           <span className={`text-dark  ${styles.price}`}>{`₹ ${productDetailData?.price}`}</span>
-          <del className={`text-dark ps-2 ${styles.price}`}>{`₹ ${productDetailData?.mrp_price}`}</del>
+          <del className={`text-secondary ps-2 ${styles.price}`}>{`₹ ${productDetailData?.mrp_price}`}</del>
         </div>
         {Array.isArray(productDetailData?.features)
           ? ''
@@ -108,14 +113,17 @@ function ProductDetailDescribtionSection({
           {selectedMultiLangData?.hsn_code} : <span> {productDetailData?.gst_hsn_code} </span>
         </p>
       </div>
+      <hr className="my-2" />
       <div>
         <ProductVariants productVariantData={productVariantData} />
+        <hr className="my-2" />
         <MultipleQuantityInputField
           productVariantData={productVariantData}
           handleMultipleQtyChange={handleMultipleQtyChange}
           itemList={itemList}
           selectedMultiLangData={selectedMultiLangData}
         />
+        <hr className="my-2" />
       </div>
       <div>
         <p className={`my-1 ${styles.detailPriceSection}`}>
@@ -134,6 +142,7 @@ function ProductDetailDescribtionSection({
             {productDetailData?.min_order_qty}
           </span>
         </p>
+        <hr className="my-2" />
         <div>
           {productVariantData?.length > 0 ? (
             <AddToCartBtn
