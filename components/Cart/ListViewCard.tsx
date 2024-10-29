@@ -46,6 +46,9 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
 
   const handleQtyChange = (item_code: string, value: string) => {
     const newQty = Number(value);
+    if (newQty < 1) {
+      return;
+    }
     const updatedItems = cartListingItems?.categories?.map((category: any) => ({
       ...category,
       orders: category.orders.map((item: any) => {
@@ -55,8 +58,11 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
         return item;
       }),
     }));
+
     setCartListingItems((prevItems: any) => ({ ...prevItems, categories: updatedItems }));
     setUpdatedCartList([{ item_code, quantity: newQty }]);
+    // setUpdatedCartList((prevItems: any) => [...prevItems, { item_code, quantity: newQty }]);
+    // console.log(updatedCartList, 'data111');
     debouncedUpdateCart(updatedCartList);
   };
   useEffect(() => {
@@ -197,6 +203,7 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                       <div className="col-6">
                         <input
                           type="number"
+                          min={1}
                           value={item?.qty}
                           className="w-auto text-start border-0"
                           onChange={(e) => handleQtyChange(item?.item_code, e.target.value)}
