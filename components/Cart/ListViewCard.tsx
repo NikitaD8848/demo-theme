@@ -60,10 +60,9 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
     }));
 
     setCartListingItems((prevItems: any) => ({ ...prevItems, categories: updatedItems }));
-    setUpdatedCartList([{ item_code, quantity: newQty }]);
-    // setUpdatedCartList((prevItems: any) => [...prevItems, { item_code, quantity: newQty }]);
-    // console.log(updatedCartList, 'data111');
-    debouncedUpdateCart(updatedCartList);
+    const newUpdatedCartList = [{ item_code, quantity: newQty }];
+    setUpdatedCartList(newUpdatedCartList);
+    debouncedUpdateCart(newUpdatedCartList);
   };
   useEffect(() => {
     if (cartListingItems?.categories?.length > 0) {
