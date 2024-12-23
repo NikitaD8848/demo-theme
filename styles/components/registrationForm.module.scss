@@ -1,0 +1,16 @@
+.registration_form {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.form_card_container {
+  max-height: 80vh;
+  height: 100%;
+}
+.form_card {
+  max-height: 100%;
+  overflow-y: scroll;
+}
+.action_buttons_container {
+  position: sticky;
+}
