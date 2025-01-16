@@ -10,7 +10,7 @@ import ProductActionButtonsMaster from './ProductActionButtons/ProductActionButt
 import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
 import ProductPageVariants from './ProductPageVariants';
 
-function ProductDetailDescribtionSection({
+function ProductDetailInformation({
   productDetailData,
   pinCode,
   validPinCode,
@@ -192,4 +192,4 @@ function ProductDetailDescribtionSection({
   );
 }
 
-export default ProductDetailDescribtionSection;
+export default ProductDetailInformation;

@@ -86,7 +86,7 @@ function ProductListingMaster({ componentsList }: any) {
     pageOffset,
     handlePageClick,
   };
-
+  console.log(componentsList, 'data111');
   function renderProductListPageHeaderComponents() {
     if (componentsList?.top_section_component?.length === 0) return;
 

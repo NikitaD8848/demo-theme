@@ -75,3 +75,21 @@
 .detail_page_btn {
   width: 200px;
 }
+
+// Product detail tab section
+.tab_section {
+  background-color: #f6f6f6;
+  padding: 60px 30px;
+  margin-bottom: 60px;
+}
+.detail_description {
+  strong {
+    color: #222;
+  }
+  p {
+    color: #878787 !important;
+  }
+  em {
+    color: #222;
+  }
+}
