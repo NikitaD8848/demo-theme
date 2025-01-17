@@ -4,15 +4,15 @@ import { BsTwitterX } from 'react-icons/bs';
 import { FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
-import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
-import styles from '../../styles/components/productDetail.module.scss';
-import ProductActionButtonsMaster from './ProductActionButtons/ProductActionButtonsMaster';
-import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
+import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
+import styles from '../../../styles/components/productDetail.module.scss';
+import ProductActionButtonsMaster from '../ProductActionButtons/ProductActionButtonsMaster';
 import ProductPageVariants from './ProductPageVariants';
+import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
 
 function ProductDetailInformation({
   productDetailData,
-  pinCode,
+  userEnteredPinCode,
   validPinCode,
   getPincodesList,
   checkPinCodeExists,
@@ -169,7 +169,7 @@ function ProductDetailInformation({
             className="d-block form-control w-auto mt-1"
             name="pincode"
             id="pincode"
-            value={pinCode}
+            value={userEnteredPinCode}
             placeholder="Enter the Pincode"
             autoComplete="off"
             onFocus={() => getPincodesList()}
@@ -184,8 +184,8 @@ function ProductDetailInformation({
               }
             }}
           />
-          {pinCode && validPinCode && <p className="text-success mt-2">Pincode is valid for delivery</p>}
-          {pinCode && !validPinCode && <p className="text-danger mt-2">Pincode is not valid for delivery</p>}
+          {userEnteredPinCode && validPinCode && <p className="text-success mt-2">Pincode is valid for delivery</p>}
+          {userEnteredPinCode && !validPinCode && <p className="text-danger mt-2">Pincode is not valid for delivery</p>}
         </div>
       </div>
     </>

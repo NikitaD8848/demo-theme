@@ -1,6 +1,5 @@
-import styles from '../../styles/components/productPage.module.scss';
-import { Rating } from 'react-simple-star-rating';
-import StarRating from './StarRating';
+import styles from '../../../styles/components/productPage.module.scss';
+import StarRating from '../StarRating';
 
 const ProductDetailHeadingWithDescription = ({ productDetailData }: any) => {
   return (

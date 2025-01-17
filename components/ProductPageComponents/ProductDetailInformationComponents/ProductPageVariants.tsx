@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../../styles/components/productPage.module.scss';
-import useProductVariants from '../../hooks/ProductDetailPageHooks/useProductVariants';
+import styles from '../../../styles/components/productPage.module.scss';
+import useProductVariants from '../../../hooks/ProductDetailPageHooks/useProductVariants';
 
 const ProductPageVariants = ({ productVariantData }: any) => {
   const { selectedSlug, unavailableErr, selectedAttributes, availableColors, availableSizes, handleAttributeClick } =

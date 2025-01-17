@@ -1,18 +1,14 @@
-import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import styles from '../../styles/components/productDetail.module.scss';
-import ProductDetailInformation from './ProductDetailInformation';
+import ProductDetailInformation from './ProductDetailInformationComponents/ProductDetailInformation';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
-import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
+import ImageGalleryRenderer from './ProductImageGallery/ImageGalleryRenderer';
 import ProductPageTabSectionMaster from './ProductPageTabSection/ProductPageTabSectionMaster';
-const ReviewMaster = dynamic(() => import('../Reviews/ReviewMaster'));
-const MatchingProductsWithVariantsCard = dynamic(() => import('./MatchingProductWithVariantCard'));
-const StockAvailabilityTable = dynamic(() => import('./StockAvailabilityTable'));
-const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndTech'));
+import ProductDetailInformationRenderer from './ProductDetailInformationComponents/ProductDetailInformationRenderer';
 
 function ProductPageMaster({ componentsList }: any) {
   const {
@@ -48,6 +44,22 @@ function ProductPageMaster({ componentsList }: any) {
       </div>
     );
   }
+  const productDetailProps = {
+    productDetailData,
+    userEnteredPinCode,
+    getPincodesList,
+    checkPinCodeExists,
+    validPinCode,
+    handleQtyModificationOnInputEdit,
+    handleQtyModificationOnButtonClick,
+    productVariantData,
+    handleStockAvailabilityData,
+    itemList,
+    handleMultipleQtyChange,
+    qty,
+    selectedMultiLangData,
+    cartData,
+  };
   console.log(componentsList, 'data111');
   function renderProductPageHeaderComponents() {
     if (componentsList?.top_section_component?.length === 0) return;
@@ -85,26 +97,17 @@ function ProductPageMaster({ componentsList }: any) {
           {renderProductPageHeaderComponents()}
           <div className="row">
             <div className="col-md-6 p-4 h-100">
-              <div className="">
-                {productDetailData?.slide_img && <ImageGalleryMaster slideShowImages={productDetailData?.slide_img} />}
-              </div>
+              {productDetailData?.slide_img && (
+                <ImageGalleryRenderer
+                  imageComponentName={componentsList?.magnified_image_component}
+                  slideShowImages={productDetailData?.slide_img}
+                />
+              )}
             </div>
             <div className="col-md-6 p-4">
-              <ProductDetailInformation
-                productDetailData={productDetailData}
-                pinCode={userEnteredPinCode}
-                getPincodesList={getPincodesList}
-                checkPinCodeExists={checkPinCodeExists}
-                validPinCode={validPinCode}
-                handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
-                handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
-                productVariantData={productVariantData}
-                handleStockAvailabilityData={handleStockAvailabilityData}
-                itemList={itemList}
-                handleMultipleQtyChange={handleMultipleQtyChange}
-                qty={qty}
-                selectedMultiLangData={selectedMultiLangData}
-                cartData={cartData}
+              <ProductDetailInformationRenderer
+                productDetailComponentName={componentsList?.product_information_component}
+                productDetailProps={productDetailProps}
               />
             </div>
           </div>
