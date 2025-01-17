@@ -11,6 +11,26 @@
 // importing mobile footer accordian
 @import 'components/mobile_footer_accordian.module.scss';
 
+:root {
+  --primary-blue: #1a1a49;
+
+  /* Font Sizes */
+  --font-size-xs: 12px; /* Extra Small */
+  --font-size-sm: 14px; /* Small */
+  --font-size-md: 16px; /* Medium (default paragraph size) */
+  --font-size-lg: 18px; /* Large */
+  --font-size-xl: 24px; /* Extra Large */
+  --font-size-xxl: 32px; /* Double Extra Large */
+
+  /* Font Weights */
+  --font-weight-light: 300; /* Light */
+  --font-weight-regular: 400; /* Regular */
+  --font-weight-medium: 500; /* Medium */
+  --font-weight-semibold: 600; /* Semi-Bold */
+  --font-weight-bold: 700; /* Bold */
+  --font-weight-black: 900; /* Black/Heavy */
+}
+
 input[type='text'] {
   box-shadow: none !important;
 }
